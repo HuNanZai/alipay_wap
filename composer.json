@@ -1,0 +1,30 @@
+{
+	"name":     "hunanzai/alipay_wap",
+	"author":   "wuwanli",
+	"email":    "123165587@qq.com",
+	"description": "php项目支付宝手机网关支付的类库",
+
+	"require":
+	{
+		"rmccue/requests": "1.6.1",
+		"hunanzai/log": "~1.1.0"
+	},
+
+	"minimum-stability": "dev",
+
+	"repositories": [
+		{
+			"type": "vcs",
+			"url": "https://github.com/HuNanZai/log"
+		}
+	],
+
+	"autoload":
+	{
+		"psr-4":
+		{
+			"HuNanZai\\Component\\Pay\\Package\\Alipay_wap\\": "src/",
+			"HuNanZai\\Component\\Pay\\Package\\Alipay_wap\\Test\\": "tests/"
+		}
+	}
+}

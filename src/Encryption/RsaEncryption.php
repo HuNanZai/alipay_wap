@@ -9,7 +9,7 @@ namespace HuNanZai\Component\Pay\Package\Alipay_wap\Encryption;
 
 use HuNanZai\Component\Log\Service as Logger;
 
-class RsaEncryption
+class RsaEncryption implements IEncryption
 {
     private $private_key_path = null; //商户私钥文件路径
     private $public_key_path = null; //支付宝共钥文件路径

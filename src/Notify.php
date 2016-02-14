@@ -7,6 +7,9 @@
  */
 namespace HuNanZai\Component\Pay\Package\Alipay_wap;
 
+use HuNanZai\Component\Pay\Package\Alipay_wap\Factory\EncryptionFactory;
+use HuNanZai\Component\Pay\Package\Alipay_wap\Param\NotifyParam;
+
 class Notify
 {
     /**
@@ -28,5 +31,33 @@ class Notify
         $this->config;
     }
 
+    public function verifyNotify(NotifyParam $notify_param)
+    {
+        if (empty($notify_param->getParams())) {
+            return false;
+        }
 
+    }
+
+    public function getSignVerify(NotifyParam $param, $sign)
+    {
+        $param->filter();
+        $param->sort();
+        $param_str  = $param->getParamString();
+
+        $isSign = false;
+        $isSign = EncryptionFactory::create($this->config)->verify($param_str, $sign);
+
+        $responseTxt = 'false';
+        if (!empty($param->getNotifyId())) {
+            //获取支付宝远程服务器atn结果(验证是否支付宝发来的消息)
+            $responseTxt = null;
+        }
+
+        if (preg_match("/true$/i", $responseTxt) && $isSign) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }

@@ -11,6 +11,7 @@ class PayParam extends BaseParam
 {
     public function __construct()
     {
+        //default value
         $this->setService();
         $this->setPaymentType();
     }

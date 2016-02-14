@@ -9,6 +9,7 @@ namespace HuNanZai\Component\Pay\Package\Alipay_wap;
 
 use HuNanZai\Component\Log\Service as Logger;
 use HuNanZai\Component\Pay\Package\Alipay_wap\Encryption\RsaEncryption;
+use HuNanZai\Component\Pay\Package\Alipay_wap\Factory\EncryptionFactory;
 use HuNanZai\Component\Pay\Package\Alipay_wap\Param\BaseParam;
 
 class Submit
@@ -52,24 +53,10 @@ class Submit
         $param->filter();
         $param->sort();
 
-        $param->setSign($this->signParam($param));
+        $param->setSign(EncryptionFactory::create($this->config)->sign($param->getParamString()));
         $param->setSignType($this->config->sign_type);
 
-        return $param->getParam();
-    }
-
-    public function signParam(BaseParam $param)
-    {
-        switch ($this->config->sign_type) {
-            case "RSA":
-                $encryption = new RsaEncryption($this->config->private_key_path, $this->config->public_key_path);
-                break;
-            default:
-                $encryption = new RsaEncryption($this->config->private_key_path, $this->config->public_key_path);
-                break;
-        }
-
-        return $encryption->sign($param->getParamString());
+        return $param->getParams();
     }
 
     /**
@@ -90,7 +77,7 @@ class Submit
 
         if ($method == 'post') {
             $result = \Requests::post($url, array(), $para, array('verify' => $cacert));
-        }else {
+        } else {
             $result = \Requests::get($url, array(), array('verify' => $cacert));
         }
 

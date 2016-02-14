@@ -46,7 +46,7 @@ class BaseParam
         return http_build_query($this->params);
     }
 
-    public function getParam()
+    public function getParams()
     {
         return $this->params;
     }

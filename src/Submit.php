@@ -22,7 +22,7 @@ class Submit
 
     public function __construct(Config $config)
     {
-        $this->config;
+        $this->config = $config;
     }
 
     public function buildRequestForm(BaseParam $para, $method, $button_name)

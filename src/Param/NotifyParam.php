@@ -20,6 +20,16 @@ class NotifyParam extends BaseParam
     }
 
     /**
+     * 获取签名
+     *
+     * @return mixed
+     */
+    public function getSign()
+    {
+        return $this->params['sign'];
+    }
+
+    /**
      * 设置通知校验id
      *
      * @param $notify_id

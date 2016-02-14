@@ -7,6 +7,7 @@
  */
 namespace HuNanZai\Component\Pay\Package\Alipay_wap;
 
+use HuNanZai\Component\Pay\Package\Alipay_wap\Param\NotifyParam;
 use HuNanZai\Component\Pay\Package\Alipay_wap\Param\PayParam;
 
 class Api
@@ -15,5 +16,17 @@ class Api
     {
         $submit = new Submit($config);
         return $submit->buildRequestForm($pay_param, 'get', '确认');
+    }
+
+    public function verifyNotify(Config $config, NotifyParam $notify_param)
+    {
+        $notify = new Notify($config);
+        return $notify->verifyNotify($notify_param);
+    }
+
+    public function verifyCallback(Config $config, NotifyParam $callback_param)
+    {
+        $notify = new Notify($config);
+        return $notify->verifyReturn($callback_param);
     }
 }

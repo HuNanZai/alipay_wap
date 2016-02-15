@@ -9,6 +9,7 @@ namespace HuNanZai\Component\Pay\Package\Alipay_wap;
 
 use HuNanZai\Component\Pay\Package\Alipay_wap\Param\NotifyParam;
 use HuNanZai\Component\Pay\Package\Alipay_wap\Param\PayParam;
+use HuNanZai\Component\Pay\Package\Alipay_wap\Param\RefundParam;
 
 class Api
 {
@@ -28,5 +29,11 @@ class Api
     {
         $notify = new Notify($config);
         return $notify->verifyReturn($callback_param);
+    }
+
+    public function refund(Config $config, RefundParam $refund_param)
+    {
+        $submit = new Submit($config);
+        return $submit->buildRequestForm($refund_param, 'get', '确认');
     }
 }

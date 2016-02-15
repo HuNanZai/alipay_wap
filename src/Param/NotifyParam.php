@@ -7,6 +7,13 @@
  */
 namespace HuNanZai\Component\Pay\Package\Alipay_wap\Param;
 
+/**
+ * Class NotifyParam
+ *
+ * 参考文档：https://doc.open.alipay.com/doc2/detail.htm?spm=0.0.0.0.XvhJ1B&treeId=60&articleId=103695&docType=1
+ *
+ * @package HuNanZai\Component\Pay\Package\Alipay_wap\Param
+ */
 class NotifyParam extends BaseParam
 {
     /**

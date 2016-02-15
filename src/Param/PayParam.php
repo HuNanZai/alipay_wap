@@ -7,19 +7,26 @@
  */
 namespace HuNanZai\Component\Pay\Package\Alipay_wap\Param;
 
+/**
+ * Class PayParam
+ *
+ * 参考文档：https://doc.open.alipay.com/doc2/detail.htm?spm=0.0.0.0.UyOXYJ&treeId=60&articleId=103693&docType=1
+ *
+ * @package HuNanZai\Component\Pay\Package\Alipay_wap\Param
+ */
 class PayParam extends BaseParam
 {
     public function __construct()
     {
         //default value
-        $this->setService();
-        $this->setPaymentType();
+        $this->setDefaultService();
+        $this->setDefaultPaymentType();
     }
 
     /**
      * 设置默认的请求服务地址
      */
-    public function setService()
+    public function setDefaultService()
     {
         $this->params['service']    = 'alipay.wap.create.direct.pay.by.user';
     }
@@ -27,7 +34,7 @@ class PayParam extends BaseParam
     /**
      * 支付类型
      */
-    public function setPaymentType()
+    public function setDefaultPaymentType()
     {
         $this->params['payment_type']   = '1';  //商品购买，默认
     }

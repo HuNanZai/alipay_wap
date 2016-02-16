@@ -12,7 +12,7 @@ class BaseParam
     /**
      * @var array 请求的参数数组
      */
-    protected $params = null;
+    protected $params = array();
 
     public function filter()
     {

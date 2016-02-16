@@ -89,6 +89,17 @@ class BaseParamTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(array('sign'=>$sign, 'sign_type'=>$sign_type), $this->base_param->getParams());
     }
 
+    public function testToString()
+    {
+        $this->assertEquals('[]', (string)$this->base_param);
+
+        $this->base_param->setSign('hunanzai');
+        $this->assertEquals('{"sign":"hunanzai"}', (string)$this->base_param);
+
+        $this->base_param->setSignType('wuwanli');
+        $this->assertEquals('{"sign":"hunanzai","sign_type":"wuwanli"}', (string)$this->base_param);
+    }
+
     public function singleParamProvider()
     {
         return array(

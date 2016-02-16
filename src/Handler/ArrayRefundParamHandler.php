@@ -11,6 +11,9 @@ use HuNanZai\Component\Pay\Package\Alipay_wap\Param\RefundParam;
 
 class ArrayRefundParamHandler extends BaseArrayHandler
 {
+    /**
+     * @return RefundParam
+     */
     public function getParam()
     {
         $refund_param = new RefundParam();

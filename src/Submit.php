@@ -8,7 +8,6 @@
 namespace HuNanZai\Component\Pay\Package\Alipay_wap;
 
 use HuNanZai\Component\Log\Service as Logger;
-use HuNanZai\Component\Pay\Package\Alipay_wap\Encryption\RsaEncryption;
 use HuNanZai\Component\Pay\Package\Alipay_wap\Factory\EncryptionFactory;
 use HuNanZai\Component\Pay\Package\Alipay_wap\Param\BaseParam;
 

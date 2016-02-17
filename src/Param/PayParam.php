@@ -7,6 +7,8 @@
  */
 namespace HuNanZai\Component\Pay\Package\Alipay_wap\Param;
 
+use HuNanZai\Component\Pay\Package\Alipay_wap\Exception\IllegalParamException;
+
 /**
  * Class PayParam
  *
@@ -28,7 +30,7 @@ class PayParam extends BaseParam
      */
     public function setDefaultService()
     {
-        $this->params['service']    = 'alipay.wap.create.direct.pay.by.user';
+        $this->params['service'] = 'alipay.wap.create.direct.pay.by.user';
     }
 
     /**
@@ -36,17 +38,23 @@ class PayParam extends BaseParam
      */
     public function setDefaultPaymentType()
     {
-        $this->params['payment_type']   = '1';  //商品购买，默认
+        $this->params['payment_type'] = '1';  //商品购买，默认
     }
 
     /**
-     * 设置合作者身份id
+     * 设置合作者身份id(以2088开头的16位纯数字)
      *
      * @param $partner
+     *
+     * @throws IllegalParamException
      */
     public function setPartner($partner)
     {
-        $this->params['partner']    = $partner;
+        if (!preg_match("/^2088[0-9]{12}$/", $partner)) {
+            throw new IllegalParamException('2088开头16位数字', $partner);
+        }
+
+        $this->params['partner'] = $partner;
     }
 
     /**
@@ -56,7 +64,7 @@ class PayParam extends BaseParam
      */
     public function setSellerId($seller_id)
     {
-        $this->params['seller_id']  = $seller_id;
+        $this->params['seller_id'] = $seller_id;
     }
 
     /**
@@ -76,7 +84,7 @@ class PayParam extends BaseParam
      */
     public function setOutTradeNo($out_trade_no)
     {
-        $this->params['out_trade_no']   = $out_trade_no;
+        $this->params['out_trade_no'] = $out_trade_no;
     }
 
     /**
@@ -86,7 +94,7 @@ class PayParam extends BaseParam
      */
     public function setTotalFee($total_fee)
     {
-        $this->params['total_fee']  = $total_fee;
+        $this->params['total_fee'] = $total_fee;
     }
 
     /**
@@ -96,7 +104,7 @@ class PayParam extends BaseParam
      */
     public function setSubject($subject)
     {
-        $this->params['subject']    = $subject;
+        $this->params['subject'] = $subject;
     }
 
     /**
@@ -126,7 +134,7 @@ class PayParam extends BaseParam
      */
     public function setBody($body)
     {
-        $this->params['body']   = $body;
+        $this->params['body'] = $body;
     }
 
     /**
@@ -136,7 +144,7 @@ class PayParam extends BaseParam
      */
     public function setShowUrl($show_url)
     {
-        $this->params['show_url']   = $show_url;
+        $this->params['show_url'] = $show_url;
     }
 
     /**
@@ -146,7 +154,7 @@ class PayParam extends BaseParam
      */
     public function setItBPay($it_b_pay)
     {
-        $this->params['it_b_pay']   = $it_b_pay;
+        $this->params['it_b_pay'] = $it_b_pay;
     }
 
     /**
@@ -156,7 +164,7 @@ class PayParam extends BaseParam
      */
     public function setExternToken($extern_token)
     {
-        $this->params['extern_token']   = $extern_token;
+        $this->params['extern_token'] = $extern_token;
     }
 
     /**
@@ -166,7 +174,7 @@ class PayParam extends BaseParam
      */
     public function setRnCheck($rn_check)
     {
-        $this->params['rn_check']   = $rn_check;
+        $this->params['rn_check'] = $rn_check;
     }
 
     /**
@@ -176,7 +184,7 @@ class PayParam extends BaseParam
      */
     public function setBuyerCertNo($buyer_cert_no)
     {
-        $this->params['buyer_cert_no']  = $buyer_cert_no;
+        $this->params['buyer_cert_no'] = $buyer_cert_no;
     }
 
     /**
@@ -186,6 +194,6 @@ class PayParam extends BaseParam
      */
     public function setBuyerRealName($buyer_real_name)
     {
-        $this->params['buyer_real_name']    = $buyer_real_name;
+        $this->params['buyer_real_name'] = $buyer_real_name;
     }
 }

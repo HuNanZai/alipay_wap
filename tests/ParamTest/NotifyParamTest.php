@@ -26,4 +26,13 @@ class NotifyParamTest extends \PHPUnit_Framework_TestCase
     {
 
     }
+
+    public function singleParamProvider()
+    {
+        return array(
+            '1' => array('hunanzai'),
+            '2' => array('wuwanli'),
+            '3' => array('testtest'),
+        );
+    }
 }

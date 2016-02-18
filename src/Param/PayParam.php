@@ -58,42 +58,66 @@ class PayParam extends BaseParam
     }
 
     /**
-     * 卖家支付宝用户号
+     * 卖家支付宝用户号(以2088开头的16位纯数字)
      *
      * @param $seller_id
+     *
+     * @throws InvalidParamException
      */
     public function setSellerId($seller_id)
     {
+        if (!preg_match("/^2088[0-9]{12}$/", $seller_id)) {
+            throw new InvalidParamException('2088开头16位数字', $seller_id);
+        }
+
         $this->params['seller_id'] = $seller_id;
     }
 
     /**
-     * 参数编码字符集
+     * 参数编码字符集(仅支持utf-8)
      *
      * @param $input_charset
+     *
+     * @throws InvalidParamException
      */
     public function setInputCharset($input_charset)
     {
+        if ($input_charset != 'utf-8') {
+            throw new InvalidParamException('utf-8', $input_charset);
+        }
+
         $this->params['_input_charset'] = $input_charset;
     }
 
     /**
-     * 商户订单号
+     * 商户订单号(String(64))
      *
      * @param $out_trade_no
+     *
+     * @throws InvalidParamException
      */
     public function setOutTradeNo($out_trade_no)
     {
+        if (!is_string($out_trade_no) || strlen($out_trade_no) > 64) {
+            throw new InvalidParamException('string(64)', $out_trade_no);
+        }
+
         $this->params['out_trade_no'] = $out_trade_no;
     }
 
     /**
-     * 付款金额
+     * 付款金额(单位为人民币，范围0.01~100000000.00)
      *
      * @param $total_fee
+     *
+     * @throws InvalidParamException
      */
     public function setTotalFee($total_fee)
     {
+        if ($total_fee < 0.01 || $total_fee > 100000000.00) {
+            throw new InvalidParamException('0.01~100000000.00', $total_fee);
+        }
+
         $this->params['total_fee'] = $total_fee;
     }
 

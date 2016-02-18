@@ -7,7 +7,7 @@
  */
 namespace HuNanZai\Component\Pay\Package\Alipay_wap\Param;
 
-use HuNanZai\Component\Pay\Package\Alipay_wap\Exception\IllegalParamException;
+use HuNanZai\Component\Pay\Package\Alipay_wap\Exception\InvalidParamException;
 
 /**
  * Class PayParam
@@ -46,12 +46,12 @@ class PayParam extends BaseParam
      *
      * @param $partner
      *
-     * @throws IllegalParamException
+     * @throws InvalidParamException
      */
     public function setPartner($partner)
     {
         if (!preg_match("/^2088[0-9]{12}$/", $partner)) {
-            throw new IllegalParamException('2088开头16位数字', $partner);
+            throw new InvalidParamException('2088开头16位数字', $partner);
         }
 
         $this->params['partner'] = $partner;

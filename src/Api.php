@@ -16,6 +16,13 @@ class Api
     public function pay(Config $config, PayParam $pay_param)
     {
         $submit = new Submit($config);
+
+        //将配置中的关键参数加入到这边
+        $pay_param->setSellerId($config->seller_id);
+        $pay_param->setPartner($config->partner);
+        $pay_param->setInputCharset($config->input_charset);
+        $pay_param->setSignType($config->sign_type);
+
         return $submit->buildRequestForm($pay_param, 'get', '确认');
     }
 

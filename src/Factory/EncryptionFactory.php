@@ -13,8 +13,8 @@ use HuNanZai\Component\Pay\Package\Alipay_wap\Encryption\RsaEncryption;
 
 class EncryptionFactory
 {
-    const ENC_TYPE_RSA  = 'rsa';
-    const ENC_TYPE_MD5  = 'md5';
+    const ENC_TYPE_RSA  = 'RSA';
+    const ENC_TYPE_MD5  = 'MD5';
 
     /**
      * 获取一个加密的类
@@ -24,7 +24,7 @@ class EncryptionFactory
      */
     public static function create($config)
     {
-        switch ($config->sign_type) {
+        switch (strtoupper($config->sign_type)) {
             case self::ENC_TYPE_RSA:
                 return new RsaEncryption($config->private_key_path, $config->public_key_path);
             default:

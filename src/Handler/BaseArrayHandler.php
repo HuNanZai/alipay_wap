@@ -9,6 +9,7 @@ namespace HuNanZai\Component\Pay\Package\Alipay_wap\Handler;
 
 use HuNanZai\Component\Pay\Package\Alipay_wap\Param\BaseParam;
 use HuNanZai\Component\Log\Service as Logger;
+use HuNanZai\Component\Pay\Package\Alipay_wap\Support\String;
 
 abstract class BaseArrayHandler
 {
@@ -27,7 +28,7 @@ abstract class BaseArrayHandler
     public function setParam(BaseParam &$param)
     {
         foreach ($this->params as $key => $value) {
-            $method = $this->getKeySetMethod($key);
+            $method = String::convertKeyToFuncName($key);
 
             if (method_exists($param, $method)) {
                 call_user_func_array(array($param, $method), array($value));
@@ -35,29 +36,6 @@ abstract class BaseArrayHandler
         }
 
         Logger::addInfo('alipay_wap_handler_base', 'setParam', array('res'=>(string) $param));
-    }
-
-    /**
-     * 获取键值对应的set方法
-     * eg: aaa_bbb_ccc=>setAaaBbbCcc
-     *
-     * @param $key
-     *
-     * @return string
-     */
-    private function getKeySetMethod($key)
-    {
-        $method = "set";
-        $tmp    = explode('_', $key);
-        if (count($tmp) == 1) {
-            $method .= ucfirst(strtolower($key));
-        } else {
-            foreach ($tmp as $key => $value) {
-                $method .= ucfirst(strtolower($value));
-            }
-        }
-
-        return $method;
     }
 
     /**

@@ -10,6 +10,7 @@ namespace HuNanZai\Component\Pay\Package\Alipay_wap\Handler;
 use HuNanZai\Component\Pay\Package\Alipay_wap\Config;
 use HuNanZai\Component\Pay\Package\Alipay_wap\Exception\ConfigFileNotExistException;
 use HuNanZai\Component\Log\Service as Logger;
+use HuNanZai\Component\Pay\Package\Alipay_wap\Support\String;
 
 class PhpFileConfigHandler
 {
@@ -37,7 +38,12 @@ class PhpFileConfigHandler
         ));
 
         foreach ($tmp as $key => $val) {
-            $config->$key = $val;
+            $method = String::convertKeyToFuncName($key);
+
+            if (method_exists($config, $method)) {
+                call_user_func_array(array($config, $method), array($val));
+            }
+            //$config->$key = $val;
         }
 
         return $config;

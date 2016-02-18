@@ -7,7 +7,7 @@
  */
 namespace HuNanZai\Component\Pay\Package\Alipay_wap\Exception;
 
-class IllegalParamException extends \Exception
+class InvalidParamException extends \Exception
 {
     public function __construct($require, $value)
     {

@@ -48,6 +48,7 @@ class BaseParam
 
     public function getParams()
     {
+        reset($this->params);   //防止之前操作导致数据指针发生变化
         return $this->params;
     }
 

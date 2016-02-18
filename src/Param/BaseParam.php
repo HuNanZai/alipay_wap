@@ -21,6 +21,7 @@ class BaseParam
                 unset($this->params[$key]);
             }
         }
+        reset($this->params);
     }
 
     public function sort()
@@ -35,6 +36,7 @@ class BaseParam
         foreach ($this->params as $key => $val) {
             $param_string .= "{$key}={$val}&";
         }
+        reset($this->params);
         //去掉最后一个&
         $param_string = substr($param_string, 0, count($param_string)-2);
 
@@ -48,7 +50,6 @@ class BaseParam
 
     public function getParams()
     {
-        reset($this->params);   //防止之前操作导致数据指针发生变化
         return $this->params;
     }
 

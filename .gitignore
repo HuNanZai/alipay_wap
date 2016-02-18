@@ -2,4 +2,6 @@
 .idea
 vendor
 composer.lock
-demo
+demo/log
+demo/resource
+demo/config.php

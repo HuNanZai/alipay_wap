@@ -1,6 +1,5 @@
 <?php
 include_once __DIR__.'/bootstrap.php';
-\HuNanZai\Component\Log\LoggerFactory::setLogFolderPath(__DIR__.'/log/');
 
 use HuNanZai\Component\Pay\Package\Alipay_wap\Api as AlipayApi;
 use HuNanZai\Component\Pay\Package\Alipay_wap\Handler\PhpFileConfigHandler as ConfigHandler;
@@ -18,9 +17,9 @@ $pay_param_handler  = new PayParamHandler(array(
     'return_url'    => '',
 ));
 
-$alipay_api = new AlipayApi();
+$alipay_api = new AlipayApi($config);
 try {
-    $result = $alipay_api->pay($config_handler->getConfig(), $pay_param_handler->getParam());
+    $result = $alipay_api->pay($pay_param_handler->getParam());
 } catch (Exception $e) {
     var_dump($e);
 }

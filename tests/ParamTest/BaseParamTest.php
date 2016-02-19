@@ -22,6 +22,8 @@ class BaseParamTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * @param $sign
+     *
      * @dataProvider singleParamProvider
      */
     public function testSetSign($sign)
@@ -31,6 +33,8 @@ class BaseParamTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * @param $sign_type
+     *
      * @dataProvider singleParamProvider
      */
     public function testSetSignType($sign_type)
@@ -40,6 +44,9 @@ class BaseParamTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * @param $sign
+     * @param $sign_type
+     *
      * @dataProvider doubleParamProvider
      */
     public function testGetParamString($sign, $sign_type)
@@ -51,6 +58,9 @@ class BaseParamTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * @param $sign
+     * @param $sign_type
+     *
      * @dataProvider doubleParamProvider
      */
     public function testGetParamStringUrlEncode($sign, $sign_type)
@@ -62,6 +72,9 @@ class BaseParamTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * @param $sign
+     * @param $sign_type
+     *
      * @dataProvider doubleParamProvider
      */
     public function testFilter($sign, $sign_type)
@@ -77,6 +90,9 @@ class BaseParamTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * @param $sign
+     * @param $sign_type
+     *
      * @dataProvider doubleParamProvider
      */
     public function testSort($sign, $sign_type)

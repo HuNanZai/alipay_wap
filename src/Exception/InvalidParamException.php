@@ -11,6 +11,6 @@ class InvalidParamException extends \Exception
 {
     public function __construct($require, $value)
     {
-        $this->message = "expected: {$require}, got: {$value}";
+        $this->message = "expected: {$require}, got: ".var_export($value, 1);
     }
 }

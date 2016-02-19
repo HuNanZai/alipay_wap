@@ -50,7 +50,7 @@ class PayParam extends BaseParam
      */
     public function setPartner($partner)
     {
-        if (!preg_match("/^2088[0-9]{12}$/", $partner)) {
+        if (!is_string($partner) || !preg_match("/^2088[0-9]{12}$/", $partner)) {
             throw new InvalidParamException('2088开头16位数字', $partner);
         }
 
@@ -66,7 +66,7 @@ class PayParam extends BaseParam
      */
     public function setSellerId($seller_id)
     {
-        if (!preg_match("/^2088[0-9]{12}$/", $seller_id)) {
+        if (!is_string($seller_id) || !preg_match("/^2088[0-9]{12}$/", $seller_id)) {
             throw new InvalidParamException('2088开头16位数字', $seller_id);
         }
 
@@ -98,7 +98,7 @@ class PayParam extends BaseParam
      */
     public function setOutTradeNo($out_trade_no)
     {
-        if (!is_string($out_trade_no) || strlen($out_trade_no) > 64) {
+        if (!is_string($out_trade_no) || strlen($out_trade_no) > 64 || strlen($out_trade_no) == 0) {
             throw new InvalidParamException('string(64)', $out_trade_no);
         }
 
@@ -122,12 +122,18 @@ class PayParam extends BaseParam
     }
 
     /**
-     * 订单名称
+     * 订单名称(商品标题/交易标题/订单标题/订单关键字 最长128个汉字)
      *
      * @param $subject
+     *
+     * @throws InvalidParamException
      */
     public function setSubject($subject)
     {
+        if (!is_string($subject) && strlen($subject) > 256) {
+             throw new InvalidParamException('string(256)', $subject);
+        }
+
         $this->params['subject'] = $subject;
     }
 

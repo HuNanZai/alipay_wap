@@ -114,6 +114,7 @@ class PayParam extends BaseParam
      */
     public function setTotalFee($total_fee)
     {
+        $total_fee = floatval($total_fee);
         if ($total_fee < 0.01 || $total_fee > 100000000.00) {
             throw new InvalidParamException('0.01~100000000.00', $total_fee);
         }
@@ -130,7 +131,7 @@ class PayParam extends BaseParam
      */
     public function setSubject($subject)
     {
-        if (!is_string($subject) && strlen($subject) > 256) {
+        if (!is_string($subject) || strlen($subject) > 256 || strlen($subject) == 0) {
              throw new InvalidParamException('string(256)', $subject);
         }
 

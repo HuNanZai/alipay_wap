@@ -141,16 +141,63 @@ class PayParamTest extends \PHPUnit_Framework_TestCase
 
     public function testSetTotalFee()
     {
-        floatval();
+        $total_fee  = 5.55;
+
+        $this->pay_param->setTotalFee($total_fee);
+
+        $params = $this->pay_param->getParams();
+        $this->assertEquals($total_fee, $params['total_fee']);
     }
 
+    /**
+     * @param $total_fee
+     *
+     * @dataProvider totalFeeExceptionProvider
+     */
     public function testSetTotalFeeThrowException($total_fee)
     {
+        $this->setExpectedException(InvalidParamException::class);
 
+        $this->pay_param->setTotalFee($total_fee);
     }
 
     public function totalFeeExceptionProvider()
     {
+        return array(
+            'neg'       => array(-5),
+            'zero'      => array(0),
+            'max'       => array(200000000000000),
+        );
+    }
 
+    public function testSetSubject()
+    {
+        $subject    = '哈哈哈哈哈';
+
+        $this->pay_param->setSubject($subject);
+        $params = $this->pay_param->getParams();
+
+        $this->assertEquals($subject, $params['subject']);
+    }
+
+    /**
+     * @param $subject
+     *
+     * @dataProvider subjectExceptionProvider
+     */
+    public function testSetSubjectThrowException($subject)
+    {
+        $this->setExpectedException(InvalidParamException::class);
+
+        $this->pay_param->setSubject($subject);
+    }
+
+    public function subjectExceptionProvider()
+    {
+        return array(
+            'null'      => array(null),
+            'empty'     => array(''),
+            'max'       => array('分阶段司法局送到附近哦is京东方i哦随即发动机上冬季佛山多家佛山多家佛山多家佛分鸡丝豆腐鸡丝豆腐jo岁的金佛山京东方将分阶段司法局送到家佛山多家of鸡丝豆腐jo第三季佛山多家山东金佛山多家'),
+        );
     }
 }

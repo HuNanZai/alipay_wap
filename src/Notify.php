@@ -41,14 +41,16 @@ class Notify
      */
     public function verifyNotify(NotifyParam $notify_param)
     {
-        if (empty($notify_param->getParams())) {
+        $params = $notify_param->getParams();
+        if (empty($params)) {
             return false;
         }
         //生成签名结果
         $isSign = $this->getSignVerify($notify_param, $notify_param->getSign());
         //获取支付宝服务器远程atn结果
         $responseTxt    = 'false';
-        if (!empty($notify_param->getNotifyId())) {
+        $notify_id  = $notify_param->getNotifyId();
+        if (!empty($notify_id)) {
             $responseTxt    = $this->getResponse($notify_param->getNotifyId());
         }
 
@@ -76,12 +78,14 @@ class Notify
      */
     public function verifyReturn(NotifyParam $notify_param)
     {
-        if (empty($notify_param->getParams())) {
+        $params = $notify_param->getParams();
+        if (empty($params)) {
             return false;
         }
         $isSign = $this->getSignVerify($notify_param, $notify_param->getSign());
         $responseTxt    = 'false';
-        if (!empty($notify_param->getNotifyId())) {
+        $notify_id  = $notify_param->getNotifyId();
+        if (!empty($notify_id)) {
             $responseTxt    = $this->getResponse($notify_param->getNotifyId());
         }
 

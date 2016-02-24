@@ -8,6 +8,7 @@
 namespace HuNanZai\Component\Pay\Package\Alipay_wap;
 
 use HuNanZai\Component\Pay\Package\Alipay_wap\Factory\EncryptionFactory;
+use HuNanZai\Component\Pay\Package\Alipay_wap\Param\BaseParam;
 use HuNanZai\Component\Pay\Package\Alipay_wap\Param\CallbackParam;
 use HuNanZai\Component\Pay\Package\Alipay_wap\Param\NotifyParam;
 use HuNanZai\Component\Log\Service as Logger;
@@ -106,12 +107,12 @@ class Notify
     /**
      * 获取返回时签名验证结果
      *
-     * @param NotifyParam $param
+     * @param BaseParam $param
      * @param             $sign
      *
      * @return bool
      */
-    public function getSignVerify(NotifyParam $param, $sign)
+    public function getSignVerify(BaseParam $param, $sign)
     {
         $param->filter();
         $param->sort();

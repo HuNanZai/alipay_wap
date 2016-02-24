@@ -10,6 +10,16 @@ namespace HuNanZai\Component\Pay\Package\Alipay_wap\Param;
  */
 class CallbackParam extends BaseParam
 {
+    public function getSign()
+    {
+        return $this->params['sign'];
+    }
+
+    public function getNotifyId()
+    {
+        return $this->params['notify_id'];
+    }
+
     /**
      * 成功标识(表示接口调用是否成功，并不表明业务处理结果。)
      *

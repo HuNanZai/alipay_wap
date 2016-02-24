@@ -73,25 +73,25 @@ class Notify
     /**
      * 验证同步返回结果是否来自支付宝
      *
-     * @param CallbackParam $notify_param
+     * @param CallbackParam $callback_param
      *
      * @return bool
      */
-    public function verifyReturn(CallbackParam $notify_param)
+    public function verifyReturn(CallbackParam $callback_param)
     {
-        $params = $notify_param->getParams();
+        $params = $callback_param->getParams();
         if (empty($params)) {
             return false;
         }
-        $isSign = $this->getSignVerify($notify_param, $notify_param->getSign());
+        $isSign = $this->getSignVerify($callback_param, $callback_param->getSign());
         $responseTxt    = 'false';
-        $notify_id  = $notify_param->getNotifyId();
+        $notify_id  = $callback_param->getNotifyId();
         if (!empty($notify_id)) {
-            $responseTxt    = $this->getResponse($notify_param->getNotifyId());
+            $responseTxt    = $this->getResponse($callback_param->getNotifyId());
         }
 
         Logger::addInfo('alipay_wap_notify', 'verifyReturn', array(
-            'param'         => (string) $notify_param,
+            'param'         => (string) $callback_param,
             'isSign'        => $isSign,
             'responseTxt'   => $responseTxt,
         ));

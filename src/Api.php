@@ -59,6 +59,10 @@ class Api
     public function search(SearchRequestParam $search_param)
     {
         $submit = new Submit($this->config);
+
+        $search_param->setInputCharset($this->config->input_charset);
+        $search_param->setPartner($this->config->partner);
+
         return $submit->buildRequestHttp($search_param);
     }
 }

@@ -7,6 +7,7 @@
  */
 namespace HuNanZai\Component\Pay\Package\Alipay_wap;
 
+use HuNanZai\Component\Pay\Package\Alipay_wap\Param\CallbackParam;
 use HuNanZai\Component\Pay\Package\Alipay_wap\Param\NotifyParam;
 use HuNanZai\Component\Pay\Package\Alipay_wap\Param\PayParam;
 use HuNanZai\Component\Pay\Package\Alipay_wap\Param\RefundParam;
@@ -42,7 +43,7 @@ class Api
         return $notify->verifyNotify($notify_param);
     }
 
-    public function verifyCallback(NotifyParam $callback_param)
+    public function verifyCallback(CallbackParam $callback_param)
     {
         $notify = new Notify($this->config);
         return $notify->verifyReturn($callback_param);

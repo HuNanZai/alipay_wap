@@ -8,6 +8,7 @@
 namespace HuNanZai\Component\Pay\Package\Alipay_wap;
 
 use HuNanZai\Component\Pay\Package\Alipay_wap\Factory\EncryptionFactory;
+use HuNanZai\Component\Pay\Package\Alipay_wap\Param\CallbackParam;
 use HuNanZai\Component\Pay\Package\Alipay_wap\Param\NotifyParam;
 use HuNanZai\Component\Log\Service as Logger;
 
@@ -72,11 +73,11 @@ class Notify
     /**
      * 验证同步返回结果是否来自支付宝
      *
-     * @param NotifyParam $notify_param
+     * @param CallbackParam $notify_param
      *
      * @return bool
      */
-    public function verifyReturn(NotifyParam $notify_param)
+    public function verifyReturn(CallbackParam $notify_param)
     {
         $params = $notify_param->getParams();
         if (empty($params)) {

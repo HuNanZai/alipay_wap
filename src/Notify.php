@@ -89,6 +89,12 @@ class Notify
             $responseTxt    = $this->getResponse($notify_param->getNotifyId());
         }
 
+        Logger::addInfo('alipay_wap_notify', 'verifyReturn', array(
+            'param'         => (string) $notify_param,
+            'isSign'        => $isSign,
+            'responseTxt'   => $responseTxt,
+        ));
+
         if (preg_match("/true$/i", $responseTxt) && $isSign) {
             return true;
         } else {

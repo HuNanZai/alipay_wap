@@ -53,12 +53,15 @@ class RsaEncryption implements IEncryption
         $res = openssl_get_publickey($key);
 
         $result = (bool)openssl_verify($data, base64_decode($sign), $res);
-        openssl_free_key($res);
 
         Logger::addInfo('alipay_wap_encryption_rsa', 'verify', array(
-            'openssl_key' => $res,
-            'result'      => $result,
+            'data'          => $data,
+            'sign'          => $sign,
+            'openssl_key'   => $res,
+            'result'        => $result,
         ));
+
+        openssl_free_key($res);
 
         return $result;
     }

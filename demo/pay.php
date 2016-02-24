@@ -13,8 +13,8 @@ $pay_param_handler  = new PayParamHandler(array(
     'subject'       => '测试订单',
     'total_fee'     => '0.01',
     //可空
-    'notify_url'    => '',
-    'return_url'    => '',
+    'notify_url'    => URL_ROOT.'notify.php',
+    'return_url'    => URL_ROOT.'callback.php',
 ));
 
 $alipay_api = new AlipayApi($config);

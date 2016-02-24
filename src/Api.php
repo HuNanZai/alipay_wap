@@ -11,6 +11,7 @@ use HuNanZai\Component\Pay\Package\Alipay_wap\Param\CallbackParam;
 use HuNanZai\Component\Pay\Package\Alipay_wap\Param\NotifyParam;
 use HuNanZai\Component\Pay\Package\Alipay_wap\Param\PayParam;
 use HuNanZai\Component\Pay\Package\Alipay_wap\Param\RefundParam;
+use HuNanZai\Component\Pay\Package\Alipay_wap\Param\SearchRequestParam;
 
 class Api
 {
@@ -53,5 +54,11 @@ class Api
     {
         $submit = new Submit($this->config);
         return $submit->buildRequestForm($refund_param, 'get', '确认');
+    }
+
+    public function search(SearchRequestParam $search_param)
+    {
+        $submit = new Submit($this->config);
+        return $submit->buildRequestHttp($search_param);
     }
 }

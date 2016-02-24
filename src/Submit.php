@@ -47,6 +47,14 @@ class Submit
         return $sHtml;
     }
 
+    public function buildRequestHttp(BaseParam $param)
+    {
+        $request_data = $this->buildParamArray($param);
+
+        $result = self::getHttpResponse('post', $this->gateway, $this->config->cacert, $request_data, $this->config->input_charset);
+        return $result;
+    }
+
     public function buildParamArray(BaseParam $param)
     {
         $param->filter();

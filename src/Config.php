@@ -11,8 +11,9 @@ class Config
 {
     public $partner     = '';   //合作者身份id
     public $seller_id   = '';   //收款支付宝账号
-    public $private_key_path    = '';   //商户私钥
-    public $public_key_path     = '';   //支付宝共钥
+    public $key         = '';   //商户安全校验码（用于md5加密）
+    public $private_key_path    = '';   //商户私钥（用于rsa加密）
+    public $public_key_path     = '';   //支付宝共钥（用于rsa加密）
 
     public $sign_type       = 'RSA';    //签名方式
     public $input_charset   = 'utf-8';  //字符编码格式
@@ -49,6 +50,22 @@ class Config
     public function setSellerId($seller_id)
     {
         $this->seller_id = $seller_id;
+    }
+
+    /**
+     * @return string
+     */
+    public function getKey()
+    {
+        return $this->key;
+    }
+
+    /**
+     * @param string $key
+     */
+    public function setKey($key)
+    {
+        $this->key = $key;
     }
 
     /**

@@ -9,6 +9,7 @@ namespace HuNanZai\Component\Pay\Package\Alipay_wap\Factory;
 
 use HuNanZai\Component\Pay\Package\Alipay_wap\Config;
 use HuNanZai\Component\Pay\Package\Alipay_wap\Encryption\IEncryption;
+use HuNanZai\Component\Pay\Package\Alipay_wap\Encryption\Md5Encryption;
 use HuNanZai\Component\Pay\Package\Alipay_wap\Encryption\RsaEncryption;
 
 class EncryptionFactory
@@ -27,6 +28,8 @@ class EncryptionFactory
         switch (strtoupper($config->sign_type)) {
             case self::ENC_TYPE_RSA:
                 return new RsaEncryption($config->private_key_path, $config->public_key_path);
+            case self::ENC_TYPE_MD5:
+                return new Md5Encryption($config->key);
             default:
                 return null;
         }

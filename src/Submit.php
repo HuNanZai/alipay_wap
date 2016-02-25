@@ -49,7 +49,7 @@ class Submit
 
     public function buildRequestHttp(BaseParam $param)
     {
-        $request_data = $this->buildParam($param, 'string');
+        $request_data = $this->buildParam($param);
 
         $result = self::getHttpResponse('post', $this->gateway, $this->config->cacert, $request_data, $this->config->input_charset);
         return $result;

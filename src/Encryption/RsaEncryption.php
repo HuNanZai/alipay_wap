@@ -29,6 +29,11 @@ class RsaEncryption implements IEncryption
         ));
     }
 
+    /**
+     * @param $data
+     *
+     * @return string
+     */
     public function sign($data)
     {
         $key = file_get_contents($this->private_key_path);
@@ -40,6 +45,7 @@ class RsaEncryption implements IEncryption
         $sign = base64_encode($sign);
 
         Logger::addInfo('alipay_wap_encryption_rsa', 'sign', array(
+            'data'        => $data,
             'openssl_key' => $res,
             'sign'        => $sign,
         ));

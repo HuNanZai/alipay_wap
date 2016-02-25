@@ -21,7 +21,7 @@ class SearchRequestParam extends BaseParam
      */
     public function setDefaultService()
     {
-        $this->params['service']    = 'signle_trade_query';
+        $this->params['service']    = 'single_trade_query';
     }
 
     /**

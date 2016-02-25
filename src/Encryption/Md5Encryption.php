@@ -45,6 +45,11 @@ class Md5Encryption implements IEncryption
         return $result;
     }
 
+    /**
+     * @param $data
+     *
+     * @return string
+     */
     public function sign($data)
     {
         $sign = md5($data.$this->key);

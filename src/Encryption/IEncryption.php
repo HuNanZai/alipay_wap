@@ -17,5 +17,11 @@ interface IEncryption
      * @return bool
      */
     public function verify($data, $sign);
+
+    /**
+     * @param $data
+     *
+     * @return string
+     */
     public function sign($data);
 }

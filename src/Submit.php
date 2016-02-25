@@ -26,7 +26,7 @@ class Submit
 
     public function buildRequestForm(BaseParam $para, $method, $button_name)
     {
-        $param_array = $this->buildParamArray($para);
+        $param_array = $this->buildParam($para);
 
         $sHtml = "<form id='alipaysubmit' name='alipaysubmit' action='" . $this->gateway . "_input_charset=" . trim(strtolower($this->config->input_charset)) . "' method='" . $method . "'>";
         while (list ($key, $val) = each($param_array)) {
@@ -49,13 +49,13 @@ class Submit
 
     public function buildRequestHttp(BaseParam $param)
     {
-        $request_data = $this->buildParamArray($param);
+        $request_data = $this->buildParam($param, 'string');
 
         $result = self::getHttpResponse('post', $this->gateway, $this->config->cacert, $request_data, $this->config->input_charset);
         return $result;
     }
 
-    public function buildParamArray(BaseParam $param)
+    public function buildParam(BaseParam $param, $result_type = 'array')
     {
         $param->filter();
         $param->sort();
@@ -63,7 +63,11 @@ class Submit
         $param->setSign(EncryptionFactory::create($this->config)->sign($param->getParamString()));
         $param->setSignType($this->config->sign_type);
 
-        return $param->getParams();
+        if ($result_type == 'array') {
+            return $param->getParams();
+        } else {
+            return $param->getParamString();
+        }
     }
 
     /**

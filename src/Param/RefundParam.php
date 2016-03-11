@@ -50,7 +50,7 @@ class RefundParam extends BaseParam
     }
 
     /**
-     * 设置卖家的邮箱账号
+     * 设置卖家的邮箱账号(如果指定了卖家id 可以不填写卖家用户id)
      *
      * @param $seller_email
      */

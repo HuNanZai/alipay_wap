@@ -19,9 +19,6 @@ class ArrayRefundParamHandler extends BaseArrayHandler
         $refund_param = new RefundParam();
 
         $this->setParam($refund_param);
-        //额外的一些默认参数设置,也可以考虑放到构造函数中
-        $refund_param->setBatchNum(1);
-        //...
 
         return $refund_param;
     }

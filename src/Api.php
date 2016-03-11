@@ -53,6 +53,11 @@ class Api
     public function refund(RefundParam $refund_param)
     {
         $submit = new Submit($this->config);
+
+        $refund_param->setInputCharset($this->config->input_charset);
+        $refund_param->setPartner($this->config->partner);
+        $refund_param->setSellerUserId($this->config->seller_id);
+
         return $submit->buildRequestForm($refund_param, 'get', '确认');
     }
 

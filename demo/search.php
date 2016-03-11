@@ -8,12 +8,12 @@ use HuNanZai\Component\Pay\Package\Alipay_wap\Api as Api;
 $config_handler = new ConfigHandler(__DIR__ . '/config.php');
 $config         = $config_handler->getConfig();
 
-$param_hander = new ParamHandler(array(
+$param_handler = new ParamHandler(array(
     'trade_no'     => '',
     'out_trade_no' => '',
 ));
 
-$param = $param_hander->getParam();
+$param = $param_handler->getParam();
 
 $alipay_api = new Api($config);
 try {

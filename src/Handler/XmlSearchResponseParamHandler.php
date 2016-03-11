@@ -7,7 +7,10 @@
  */
 namespace HuNanZai\Component\Pay\Package\Alipay_wap\Handler;
 
-class XmlSearchResponseParamHandler
+use HuNanZai\Component\Pay\Package\Alipay_wap\Param\BaseParam;
+use HuNanZai\Component\Pay\Package\Alipay_wap\Param\SearchResponseParam;
+
+class XmlSearchResponseParamHandler implements IParamHandler
 {
     /**
      * @var string
@@ -16,6 +19,16 @@ class XmlSearchResponseParamHandler
 
     public function __construct($xml)
     {
+        $this->xml  = $xml;
+    }
+
+    /**
+     * @return BaseParam
+     */
+    public function getParam()
+    {
+        $response_param = new SearchResponseParam();
+
 
     }
 }

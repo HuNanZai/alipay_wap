@@ -11,7 +11,7 @@ use HuNanZai\Component\Pay\Package\Alipay_wap\Param\BaseParam;
 use HuNanZai\Component\Log\Service as Logger;
 use HuNanZai\Component\Pay\Package\Alipay_wap\Support\String;
 
-abstract class BaseArrayHandler
+abstract class BaseArrayHandler implements IParamHandler
 {
     protected $params = null;
 
@@ -37,9 +37,4 @@ abstract class BaseArrayHandler
 
         Logger::addInfo('alipay_wap_handler_base', 'setParam', array('res'=>(string) $param));
     }
-
-    /**
-     * @return BaseParam
-     */
-    abstract public function getParam();
 }
